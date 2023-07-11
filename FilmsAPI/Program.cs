@@ -6,7 +6,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FilmeConnection");
 
-builder.Services.AddDbContext<FilmeContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))); // conexão com BD
+builder.Services.AddDbContext<FilmeContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))); // conexão com BD
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // necessário para utilizar lib AutoMapper no projeto
 

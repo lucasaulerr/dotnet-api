@@ -37,12 +37,12 @@ public class EnderecoController : ControllerBase
         var endereco = _context.Enderecos.FirstOrDefault(el => el.Id == id);
         if (endereco == null) return NotFound();
 
-        var cinemaDto = _mapper.Map<ReadEnderecoDto>(endereco);
-        return Ok(cinemaDto);
+        var enderecoDto = _mapper.Map<ReadEnderecoDto>(endereco);
+        return Ok(enderecoDto);
     }
 
     [HttpGet]
-    public IEnumerable<ReadEnderecoDto> RecuperaEnderecos([FromQuery] int skip, [FromQuery] int take)
+    public IEnumerable<ReadEnderecoDto> RecuperaEnderecos([FromQuery] int skip=0, [FromQuery] int take=10)
     {
         return _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.Skip(skip).Take(take));
     }
